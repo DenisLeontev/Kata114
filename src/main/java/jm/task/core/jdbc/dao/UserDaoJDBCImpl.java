@@ -39,6 +39,12 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.executeUpdate("DROP TABLE IF EXISTS katadb111.users");
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -52,17 +58,28 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
     public void removeUserById(long id) {
         Connection connection = Util.getConnection();
-        String sql = "DELETE FROM users WHERE ID=?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setLong(1, id);
+        try (PreparedStatement pstm = connection.prepareStatement("DELETE FROM users WHERE id = ?")) {
+            pstm.setLong(1, id);
+            pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -82,9 +99,14 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setAge(resultSet.getByte("age"));
                 allUser.add(user);
             }
-            System.out.println(allUser);
-        } catch (Exception e) {
+                    } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         return allUser;
     }
@@ -96,6 +118,12 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

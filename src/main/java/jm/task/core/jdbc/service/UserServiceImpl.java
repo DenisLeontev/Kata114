@@ -26,10 +26,10 @@ public class UserServiceImpl implements UserService {
 
     public void removeUserById(long id) {
         userDaoJDBC.removeUserById(id);
-
-    }
+            }
 
     public List<User> getAllUsers() {
+        System.out.println(userDaoJDBC.getAllUsers());
         return userDaoJDBC.getAllUsers();
     }
 

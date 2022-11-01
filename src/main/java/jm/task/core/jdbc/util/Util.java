@@ -23,27 +23,3 @@ public class Util {
 }
 
 
-//public class Util {
-//    // реализуйте настройку соеденения с БД https://pastebin.com/rwgPsfgW
-//
-//    private static final  String URL = "jdbc:mysql://localhost:3306/katadb111";
-//    private static final String URLFIXED =
-//            "jdbc:mysql://localhost:3306/katadb111?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true" +
-//                    "&useLegacyDatetimeCode=false&serverTimezone=UTC";
-//    private static final String USERNAME = "root";
-//    private static final  String PASSWORD = "root";
-//
-//    public static void main(String[] args) throws Exception{
-//        Connection connection;
-//
-//        connection = DriverManager.getConnection(URLFIXED, USERNAME, PASSWORD);
-//
-//        if (!connection.isClosed()) {
-//            System.out.println("Соединение с БД Установлено!");
-//        }
-//        connection.close();
-//        if (connection.isClosed()) {
-//            System.out.println("Соединение с БД Закрыто!");
-//        }
-//    }
-//}
